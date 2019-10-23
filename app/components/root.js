@@ -1,21 +1,50 @@
-import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { fetchStats } from '../redux/cubs';
+import { connect } from 'react-redux';
+import LineGraph from './LineGraph';
+import Home from './Home';
 
-export default class Root extends React.Component {
+class Root extends React.Component {
   componentDidMount() {
-    // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
+    this.props.fetchStats();
   }
   render() {
     return (
       <Router>
-        <div>
-          <nav>
-            Welcome!
-          </nav>
-          <h1>Welcome to StackBot Project Management: your robot employees are awaiting assignments!</h1>
-          <p>This seems like a nice place to get started with some Routes!</p>
-        </div>
+        <React.Fragment>
+          <header>
+            <div className="title">
+              <h1>MLB Data Visualization</h1>
+            </div>
+            <nav>
+              <Link className="link" to="/">
+                HOME
+              </Link>
+              <Link className="link" to="/cubs-true-outcomes-1920-2019">
+                DATA
+              </Link>
+            </nav>
+          </header>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/cubs-true-outcomes-1920-2019"
+            component={LineGraph}
+          />
+        </React.Fragment>
       </Router>
-    )
+      // </Router>
+    );
   }
 }
+
+const mapDispatch = dispatch => {
+  return {
+    fetchStats: () => dispatch(fetchStats()),
+  };
+};
+export default connect(
+  null,
+  mapDispatch
+)(Root);

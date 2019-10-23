@@ -1,12 +1,8 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import statsReducer from './cubs';
 
-// This reducer is just a stub. We should probably do something
-// with that combineReducers thing up there...
+const appReducer = combineReducers({
+  stats: statsReducer,
+});
 
-const appReducer = () => {}
-// const appReducer = combineReducers({
-  // robots,
-  // projects,
-// })
-
-export default appReducer
+export default appReducer;

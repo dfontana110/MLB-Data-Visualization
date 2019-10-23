@@ -6,7 +6,11 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    res.json(await Cub.findAll());
+    res.json(
+      await Cub.findAll({
+        order: [['year', 'ASC']],
+      })
+    );
   } catch (err) {
     next(err);
   }
@@ -25,3 +29,5 @@ router.get('/:year', async (req, res, next) => {
   }
 });
 module.exports = router;
+
+//

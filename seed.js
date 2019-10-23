@@ -4,16 +4,6 @@ const cheerio = require('cheerio');
 const { db, Cub } = require('./server/db');
 let url = 'https://www.baseball-reference.com/teams/CHC/batteam.shtml';
 
-// const seed = async () => {
-//   try {
-//     await db.sync({ force: true });
-
-//     // seed your database here!
-//   } catch (err) {
-//     console.log(red(err));
-//   }
-// };
-
 const seed = rp(url)
   .then(function(html) {
     let year = 2019;
@@ -55,7 +45,7 @@ const seed = rp(url)
         })
       );
       // await db.sync({ force: true });
-      console.log('done seeding!');
+      console.log(green('done seeding!'));
     } catch (err) {
       console.log(err);
     }
@@ -78,3 +68,36 @@ module.exports = seed;
 //       db.close();
 //     });
 // }
+
+const teams = [
+  'ARI',
+  'ATL',
+  'BAL',
+  'BOS',
+  'CHC',
+  'CHW',
+  'CIN',
+  'CLE',
+  'COL',
+  'DET',
+  'HOU',
+  'KCR',
+  'ANA',
+  'LAD',
+  'FLA',
+  'MIL',
+  'MIN',
+  'NYM',
+  'NYY',
+  'OAK',
+  'PHI',
+  'PIT',
+  'SDP',
+  'SFG',
+  'SEA',
+  'STL',
+  'TBD',
+  'TEX',
+  'TOR',
+  'WSN',
+];
