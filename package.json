@@ -35,7 +35,7 @@
     "redux-thunk": "^2.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "sequelize": "^4.37.8"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.15.0",
